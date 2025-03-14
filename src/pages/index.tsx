@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function Home({ title }) {
   return (
     <>
       <Head>
@@ -36,7 +36,7 @@ export default function Home() {
           </nav>
         </header>
         <main className={styles.main}>
-          <Link href="">
+          <Link href="./events/london">
             <img />
             <h2> Events in London</h2>
             <p>
@@ -53,7 +53,7 @@ export default function Home() {
               Lorem Ipsum.
             </p>
           </Link>
-          <Link href="">
+          <Link href="./events/san-francisco">
             <img />
             <h2> Events in San Francisco</h2>
             <p>
@@ -70,7 +70,7 @@ export default function Home() {
               accident, sometimes on purpose (injected humour and the like).
             </p>
           </Link>
-          <Link href="">
+          <Link href="./events/barcelona">
             <img />
             <h2> Events in Barcelona</h2>
             <p>
@@ -98,4 +98,16 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+// this is ran first before our Home/Page function
+// this is never run on the client side, only on the server side
+export function getServerSideProps() {
+  // we may have secrets here but if we don't return it
+  // it will not be exposed to the client
+  return {
+    props: {
+      title: "Hello Everyone!",
+    },
+  };
 }

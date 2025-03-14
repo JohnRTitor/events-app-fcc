@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Page() {
+function EventsPage() {
   return (
     <div>
       <h1> Events Page </h1>
@@ -62,4 +62,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default EventsPage;
