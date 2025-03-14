@@ -4,17 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 // <Link> tag allows navigation with full page refresh, unlike <a> tag
 import Link from "next/link";
-
-type Event = {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-};
-
-interface HomeProps {
-  data: Event[];
-}
+import { Event, HomeProps } from "@/types/event";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +37,7 @@ export default function Home({ data }: HomeProps) {
           </nav>
         </header>
         <main className={styles.main}>
-          {data.map((event) => (
+          {data.map((event: Event) => (
             <Link key={event.id} href={`/events/${event.id}`}>
               <Image
                 alt={`Image for ${event.title}`}
