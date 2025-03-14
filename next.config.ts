@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     // Next.js by default blocks images from external sources
     // whitelist here
-    domains: ["images.unsplash.com"],
+    domains: ["images.unsplash.com", "wembleypark.com"],
   },
   reactStrictMode: true,
 };

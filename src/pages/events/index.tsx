@@ -1,21 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
-import { HomeProps } from "@/types/event";
+import { EventCategory } from "@/types/event";
 
-function EventsPage({ data }: HomeProps) {
+interface EventsPageProps {
+  events_categories: EventCategory[];
+}
+
+function EventsPage({ events_categories }: EventsPageProps) {
   return (
     <div>
       <h1> Events Page </h1>
       <div>
-        {data.map((event) => (
-          <Link key={event.id} href={`/events/${event.id}`}>
+        {events_categories.map((event_category: EventCategory) => (
+          <Link key={event_category.id} href={`/events/${event_category.id}`}>
             <Image
-              alt={`Image for ${event.title}`}
-              src={event.image}
+              alt={`Image for ${event_category.title}`}
+              src={event_category.image}
               width={200}
               height={100}
             />
-            <h2>{event.title}</h2>
+            <h2>{event_category.title}</h2>
           </Link>
         ))}
       </div>
@@ -26,11 +30,10 @@ function EventsPage({ data }: HomeProps) {
 export default EventsPage;
 
 export async function getStaticProps() {
-  const { events_categories } = await import("../../data/data.json");
-  console.log(events_categories);
+  const { events_categories } = await import("../../data/events.json");
   return {
     props: {
-      data: events_categories,
+      events_categories,
     },
   };
 }

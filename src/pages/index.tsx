@@ -2,9 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-// <Link> tag allows navigation with full page refresh, unlike <a> tag
+// <Link> tag allows navigation without full page refresh, unlike <a> tag
 import Link from "next/link";
-import { Event, HomeProps } from "@/types/event";
+import { EventCategory, EventsData } from "@/types/event";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home({ data }: HomeProps) {
+export default function Home({ events_categories }: EventsData) {
   return (
     <>
       <Head>
@@ -37,16 +37,16 @@ export default function Home({ data }: HomeProps) {
           </nav>
         </header>
         <main className={styles.main}>
-          {data.map((event: Event) => (
-            <Link key={event.id} href={`/events/${event.id}`}>
+          {events_categories.map((event_category: EventCategory) => (
+            <Link key={event_category.id} href={`/events/${event_category.id}`}>
               <Image
-                alt={`Image for ${event.title}`}
-                src={event.image}
+                alt={`Image for ${event_category.title}`}
+                src={event_category.image}
                 width={200}
                 height={100}
               />
-              <h2> {event.title}</h2>
-              <p> {event.description}</p>
+              <h2> {event_category.title}</h2>
+              <p> {event_category.description}</p>
             </Link>
           ))}
         </main>
@@ -62,13 +62,12 @@ export default function Home({ data }: HomeProps) {
 // this is ran first before our Home/Page function
 // this is never run on the client side, only on the server side
 export async function getServerSideProps() {
-  // we may have secrets here but if we don't return it
-  // it will not be exposed to the client
-  const { events_categories } = await import("../data/data.json");
+  // we can have secrets here but if we don't return it
+  // only the returned values will be exposed to the client
+  const { events_categories }: { events_categories: EventCategory[] } =
+    await import("../data/events.json");
   console.log(events_categories);
   return {
-    props: {
-      data: events_categories,
-    },
+    props: { events_categories },
   };
 }
