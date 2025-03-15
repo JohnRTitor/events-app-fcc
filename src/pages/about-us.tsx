@@ -1,6 +1,11 @@
+import Head from "next/head";
+
 function AboutUsPage() {
   return (
     <div>
+      <Head>
+        <title>About Us | Event App</title>
+      </Head>
       <h1> About Us </h1>
       <p>
         Le Lorem Ipsum est simplement du faux texte employé dans la composition
