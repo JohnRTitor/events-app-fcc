@@ -1,10 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { EventCategory } from "@/types/event";
-
-interface EventsPageProps {
-  events_categories: EventCategory[];
-}
+import { EventsPageProps } from "@/types/props";
 
 function EventsPage({ events_categories }: EventsPageProps) {
   return (

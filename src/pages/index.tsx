@@ -1,22 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-// <Link> tag allows navigation without full page refresh, unlike <a> tag
-import Link from "next/link";
-import { EventCategory, EventsData } from "@/types/event";
+import { EventCategory } from "@/types/event";
+import { HomePageProps } from "@/types/props";
+import { HomePageMain } from "@/components/home/home-page";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default function Home({ events_categories }: EventsData) {
+export default function Home({ events_categories }: HomePageProps) {
   return (
     <>
       <Head>
@@ -25,35 +12,8 @@ export default function Home({ events_categories }: EventsData) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <header>
-          <nav>
-            <img />
-            <Link href="/"> Home</Link>
-            <Link href="/events"> Events</Link>
-            <Link href="/about-us"> About Us</Link>
-          </nav>
-        </header>
-        <main className={styles.main}>
-          {events_categories.map((event_category: EventCategory) => (
-            <Link key={event_category.id} href={`/events/${event_category.id}`}>
-              <Image
-                alt={`Image for ${event_category.title}`}
-                src={event_category.image}
-                width={200}
-                height={100}
-              />
-              <h2> {event_category.title}</h2>
-              <p> {event_category.description}</p>
-            </Link>
-          ))}
-        </main>
-        <footer className={styles.footer}>
-          <p>&copy; {new Date().getFullYear()} Events App</p>
-          <p>Powered by Next.js</p>
-        </footer>
+      <div>
+        <HomePageMain events_categories={events_categories} />
       </div>
     </>
   );
@@ -66,7 +26,7 @@ export async function getServerSideProps() {
   // only the returned values will be exposed to the client
   const { events_categories }: { events_categories: EventCategory[] } =
     await import("../data/events.json");
-  console.log(events_categories);
+  // console.log(events_categories);
   return {
     props: { events_categories },
   };
