@@ -50,7 +50,7 @@ main {
     width: 100%;
     max-width: 1250px;
     margin: auto;
-    padding: 100px 30px;
+    padding: 80px 30px;
     min-height: 550px;
 }
 
@@ -75,4 +75,9 @@ main {
             width: 50%;
         }
     }
+}
+
+.about_us_list {
+    display: flex;
+    flex-direction: row;
 }
