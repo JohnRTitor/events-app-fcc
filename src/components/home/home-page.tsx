@@ -5,19 +5,27 @@ import { HomePageProps } from "@/types/props";
 
 export function HomePageMain({ events_categories }: HomePageProps) {
   return (
-    <main>
+    <div className="home_body">
       {events_categories.map((event_category: EventCategory) => (
-        <Link key={event_category.id} href={`/events/${event_category.id}`}>
-          <Image
-            alt={`Image for ${event_category.title}`}
-            src={event_category.image}
-            width={200}
-            height={100}
-          />
-          <h2> {event_category.title}</h2>
-          <p> {event_category.description}</p>
+        <Link
+          className="card"
+          key={event_category.id}
+          href={`/events/${event_category.id}`}
+        >
+          <div className="image">
+            <Image
+              alt={`Image for ${event_category.title}`}
+              src={event_category.image}
+              width={500}
+              height={300}
+            />
+          </div>
+          <div className="content">
+            <h2> {event_category.title}</h2>
+            <p> {event_category.description}</p>
+          </div>
         </Link>
       ))}
-    </main>
+    </div>
   );
 }
