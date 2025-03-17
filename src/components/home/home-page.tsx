@@ -3,7 +3,7 @@ import Image from "next/image";
 import { EventCategory } from "@/types/event";
 import { HomePageProps } from "@/types/props";
 
-export function HomePageMain({ events_categories }: HomePageProps) {
+export function HomePageTemplate({ events_categories }: HomePageProps) {
   return (
     <div className="home_body">
       {events_categories.map((event_category: EventCategory) => (

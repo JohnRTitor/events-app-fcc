@@ -1,14 +1,12 @@
 import { EventCategory } from "@/types/event";
 import { HomePageProps } from "@/types/props";
-import { HomePageMain } from "@/components/home/home-page";
+import { HomePageTemplate } from "@/components/home/home-page";
 
 export default function Home({ events_categories }: HomePageProps) {
   return (
-    <>
-      <div>
-        <HomePageMain events_categories={events_categories} />
-      </div>
-    </>
+    <div>
+      <HomePageTemplate events_categories={events_categories} />
+    </div>
   );
 }
 

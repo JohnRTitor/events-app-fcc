@@ -1,33 +1,12 @@
+import EventsPerCityTemplate from "@/components/events/event-per-city";
 import { EventCategory, EventItem } from "@/types/event";
+import { EventsPerCityPageProps } from "@/types/props";
 import { GetStaticPropsContext } from "next";
-import Link from "next/link";
-import Image from "next/image";
-
-interface EventsPerCityPageProps {
-  city: string;
-  events: EventItem[];
-}
 
 // common template for /events/bercelona, /events/london, pages
 // returned props are passed to this function
 function EventsPerCityPage({ city, events }: EventsPerCityPageProps) {
-  return (
-    <div>
-      <h1> Events in {city} </h1>
-
-      {events.map((event) => (
-        <Link
-          id={event.id}
-          href={`/events/${event.city}/${event.id}`}
-          key={event.id}
-        >
-          <Image width={300} height={200} src={event.image} alt={event.title} />
-          <h2>{event.title}</h2>
-          <p>{event.description}</p>
-        </Link>
-      ))}
-    </div>
-  );
+  return <EventsPerCityTemplate city={city} events={events} />;
 }
 
 export default EventsPerCityPage;
