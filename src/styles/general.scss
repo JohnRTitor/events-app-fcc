@@ -109,7 +109,7 @@ main {
         flex-wrap: wrap;
         gap: 30px;
         width: 100%;
-        justify-content: start;
+        justify-content: flex-start;
         .card {
             display: flex;
             flex-direction: column;

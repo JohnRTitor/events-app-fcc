@@ -12,3 +12,7 @@ export interface EventsPerCityPageProps {
   city: string;
   events: EventItem[];
 }
+
+export interface EventProps {
+  eventData: EventItem;
+}

@@ -1,27 +1,13 @@
+import SingleEventTemplate from "@/components/events/single-event";
 import { EventItem } from "@/types/event";
 import { GetStaticPropsContext } from "next";
-import Image from "next/image";
+import { EventProps } from "@/types/props";
 
-interface EventProps {
-  eventData: EventItem;
+function SingleEventPage({ eventData }: EventProps) {
+  return <SingleEventTemplate eventData={eventData} />;
 }
 
-function Page({ eventData }: EventProps) {
-  return (
-    <div>
-      <Image
-        src={eventData.image}
-        alt={eventData.title}
-        width={600}
-        height={300}
-      />
-      <h1> {eventData.title} </h1>
-      <p> {eventData.description} </p>
-    </div>
-  );
-}
-
-export default Page;
+export default SingleEventPage;
 
 export async function getStaticPaths() {
   // get the list of events
