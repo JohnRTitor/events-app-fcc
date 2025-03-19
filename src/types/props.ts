@@ -16,3 +16,8 @@ export interface EventsPerCityPageProps {
 export interface EventProps {
   eventData: EventItem;
 }
+
+export interface EventsDataJson {
+  events_categories: EventCategory[];
+  all_events: EventItem[];
+}

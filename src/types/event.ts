@@ -16,5 +16,5 @@ export type EventItem = {
 
 export type EventsData = {
   events_categories: EventCategory[];
-  allEvents: EventItem[];
+  all_events: EventItem[];
 };

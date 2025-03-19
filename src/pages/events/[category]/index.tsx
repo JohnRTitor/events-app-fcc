@@ -1,6 +1,6 @@
 import EventsPerCityTemplate from "@/components/events/event-per-city";
 import { EventCategory, EventItem } from "@/types/event";
-import { EventsPerCityPageProps } from "@/types/props";
+import { EventsDataJson, EventsPerCityPageProps } from "@/types/props";
 import { GetStaticPropsContext } from "next";
 
 // common template for /events/bercelona, /events/london, pages
@@ -38,12 +38,12 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const city: string = context.params!.category!.toString();
 
   // import the events data
-  const { allEvents }: { allEvents: EventItem[] } = await import(
+  const { all_events }: EventsDataJson = await import(
     "../../../data/events.json"
   );
 
   // get events for this city
-  const filteredEvents: EventItem[] = allEvents.filter(
+  const filteredEvents: EventItem[] = all_events.filter(
     (event: EventItem) => event.city === city,
   );
 
