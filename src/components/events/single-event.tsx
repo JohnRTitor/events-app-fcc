@@ -15,11 +15,13 @@ export default function SingleEventTemplate({ eventData }: EventProps) {
     let eventId: string = "";
     e.preventDefault();
 
-    // if we entered an email (current method accesses the current value)
-    if (inputEmailComponent.current) {
-      emailValue = inputEmailComponent.current.value;
-      eventId = router.query.eventId as string;
+    if (!inputEmailComponent.current) {
+      return;
     }
+
+    // if we entered an email (current method accesses the current value)
+    emailValue = inputEmailComponent.current.value;
+    eventId = router.query.eventId as string;
 
     const validRegex: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!emailValue.match(validRegex)) {
@@ -43,8 +45,9 @@ export default function SingleEventTemplate({ eventData }: EventProps) {
       }
 
       const data = await response.json();
-      console.log("POST", data);
       setMessage(data.message);
+      // reset the value of inputEmail field
+      inputEmailComponent.current!.value = "";
     } catch (error) {
       console.log(error);
       setMessage(
